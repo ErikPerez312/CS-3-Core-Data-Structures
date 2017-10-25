@@ -9,6 +9,7 @@ import string
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
+values = string.digits + string.ascii_lowercase
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -18,6 +19,14 @@ def decode(digits, base):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
+    if base == 2:
+        
+        binary_number = []
+        for state in digits:
+            number = int(state)
+
+
+            print(number, "=======Type: ", type(number))
     # ...
     # TODO: Decode digits from hexadecimal (base 16)
     # ...
@@ -31,14 +40,63 @@ def encode(number, base):
     base: int -- base to convert to
     return: str -- string representation of number (in given base)"""
     # Handle up to base 36 [0-9a-z]
-    assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
+    # assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
+
+    join_numbers_as_string = lambda number_array: ''.join(str(number) for number in number_array)
+
     # TODO: Encode number in binary (base 2)
+    if base == 2:
+        ## Method: 1
+        quotient = number
+        remainders_list = []
+
+        while not quotient == 0:
+            remainders_list.append(quotient % 2)
+            quotient /= 2
+
+        remainders_list.reverse()
+        binary_number = join_numbers_as_string(remainders_list)
+
+        # return ' '.join(string[i:i+length] for i in xrange(0,len(string),length)
+        return binary_number
+
+        ## Method 2:
+        #Stack overflow
+        # return "{0:b}".format(number)
     # ...
     # TODO: Encode number in hexadecimal (base 16)
+    if base == 16:
+        quotient = number
+        # hex_values_dict = {"0": "0", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8", "9": "9", 
+                            # "10": "A", "11": "B", "12": "C", "13": "D", "14": "E", "15": "F", }
+        remainders_list = []
+
+        while not quotient == 0:
+            remainders_list.append(quotient % 16)
+            quotient /= 16
+
+        remainders_list.reverse()
+
+        for index, number in enumerate(remainders_list):
+            remainders_list[index] = values[int(number)]
+
+        return join_numbers_as_string(remainders_list)
     # ...
     # TODO: Encode number in any base (2 up to 36)
+    quotient = number
+    remainders_list = []
+
+    while not quotient == 0:
+        remainders_list.append(quotient % base)
+        quotient /= base
+
+    for index, number in enumerate(remainders_list):
+            remainders_list[index] = string.hexdigits[int(number)]
+
+    remainders_list.reverse()
+    return join_numbers_as_string(remainders_list)
     # ...
 
 
@@ -79,3 +137,25 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+    # number = "0010"
+    # decode(number, 2)
+    # fibonacci = [0,1,1,2,3,5,8,13,21,34,55]
+    # odd_numbers = filter(lambda x: x % 2 == 0, fibonacci)
+    # print(odd_numbers)
+
+    number = 5
+    encode = encode(number, 10)
+    print(encode)
+    print(string.digits + string.ascii_lowercase)
+    # print(string.hexdigits[13])
+
+    # [(x,y,z) for x in range(1,30) for y in range(x,30) for z in range(y,30) if x**2 + y**2 == z**2]
+
+
+
+
+
+
+
+
