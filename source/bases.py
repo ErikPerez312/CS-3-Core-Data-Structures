@@ -1,9 +1,10 @@
 #!python
 
+from math import floor
 import string
 import unittest
 import pdb
-import math
+
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
 # string.digits is '0123456789'
 # string.hexdigits is '0123456789abcdefABCDEF'
@@ -24,12 +25,9 @@ def decode(digits, base):  # try 4 Lines
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
     if base == 2:
+        pass
 
-        binary_number = []
-        for number in digits:
-            binary_number.append(math.pow(int(number), 2))
 
-            # print(number, "=======Type: ", type(number))
     # ...
     # TODO: Decode digits from hexadecimal (base 16)
     # ...
@@ -37,7 +35,7 @@ def decode(digits, base):  # try 4 Lines
     # ...
 
 
-def encode(number, base):  # try Lines 
+def encode(number, base):
     """Encode given number in base 10 to digits in given base.
     number: int -- integer representation of number (in base 10)
     base: int -- base to convert to
@@ -50,14 +48,14 @@ def encode(number, base):  # try Lines
     quotient = number
     remainders_list = []
 
-    remainders_list.append(math.floor(quotient % base))
+    remainders_list.append(floor(quotient % base))
 
-    while math.floor(quotient / base) > 0:
+    while floor(quotient / base) > 0:
         quotient /= base
-        remainders_list.append(math.floor(quotient % base))
+        remainders_list.append(floor(quotient % base))
         
     for index, number in enumerate(remainders_list):
-            remainders_list[index] = VALUES[int(number)]
+        remainders_list[index] = VALUES[int(number)]
 
     remainders_list.reverse()
     return JOIN_NUMBERS_AS_STRING(remainders_list)
@@ -104,28 +102,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-    # number = "0010"
-    # decode(number, 2)
-    # fibonacci = [0,1,1,2,3,5,8,13,21,34,55]
-    # odd_numbers = filter(lambda x: x % 2 == 0, fibonacci)
-    # print(odd_numbers)
-
-    # number = 2
-    # encode = encode(number, 2)
-    # if encode == "10":
-    #     print("true")
-
-    # print(encode(15, 2))
-    # assert encode(2, 2) == '10'
-
-    # def test():
-    #     assert encode(2,2) == "10"
-
-    # print(test())
-
-    # print(string.hexdigits[13])
-
-    # [(x,y,z) for x in range(1,30) for y in range(x,30) for z in range(y,30) if x**2 + y**2 == z**2]
+    print(decode("1010", 2))
 
 
 
