@@ -11,7 +11,11 @@
 |:-----:|:----------------------:|:------------------------------------------:|
 |   1   |    Monday, October 23  | [Number Bases](Class1.md)                  |
 |   2   | Wednesday, October 25  | [Recursion & Search Algorithms](Class2.md) |
+<<<<<<< HEAD
 |   3   |    Friday, October 27  | String Algorithms             |
+=======
+|   3   |    Friday, October 27  | [String Algorithms](Class3.md)             |
+>>>>>>> 64b48dff81eaf08b7861cf5caea6dbfc76588bd9
 |   4   |    Monday, October 30  | Array & Linked List           |
 |   5   | Wednesday, November 1  | List, Stack & Queue           |
 |   6   |    Friday, November 3  | *TBD*                         |
