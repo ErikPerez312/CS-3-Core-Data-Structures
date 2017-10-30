@@ -18,8 +18,8 @@ def factorial_iterative(n):
         return 1
     elif n > 1:
         total = 1
-        for x in range(n):
-            total = total * (n-x)
+        for i in range(n):
+            total = total * (n-i)
             
         return total
     pass
