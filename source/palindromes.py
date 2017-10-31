@@ -15,51 +15,55 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    # return is_palindrome_iterative(text)
-    return is_palindrome_recursive(text)
+    
+    return is_palindrome_iterative(text)
+    # return is_palindrome_recursive(text)
 
 
 def is_palindrome_iterative(text):
     # TODO: implement the is_palindrome function iteratively here
+
     ##Method 1:
-    # lowercase_text = text.lower()
-    # left = 0
-    # right = len(lowercase_text) - 1
-
-    # print(LETTERS)
-    # while left < right:
-    #     ##TODO: Fails two test
-    #     # current_left_character = lowercase_text[left]
-    #     # current_right_character = lowercase_text[right]
-
-    #     if lowercase_text[left] not in LETTERS:
-    #         left += 1
-
-    #     if lowercase_text[right] not in LETTERS:
-    #         right -= 1
-
-    #     if lowercase_text[left] is not lowercase_text[right]:
-    #         return False
-
-    #     left += 1
-    #     right -= 1
-
-    # return True
-    ##Method 2:
-    # S/O Stack Overflow for Regex. Link: https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
-    text = re.sub(r'\W+', '', text).lower()
-
+    lowercase_text = text.lower()
     left = 0
-    right = len(text) - 1
+    right = len(lowercase_text) - 1
 
+    print(LETTERS)
     while left < right:
-        if text[left] is not text[right]:
+        ##TODO: Fails two test
+        # current_left_character = lowercase_text[left]
+        # current_right_character = lowercase_text[right]
+
+        if lowercase_text[left] not in LETTERS:
+            left += 1
+            continue
+
+        if lowercase_text[right] not in LETTERS:
+            right -= 1
+            continue
+
+        if lowercase_text[left] is not lowercase_text[right]:
             return False
 
         left += 1
         right -= 1
 
     return True
+    ##Method 2:
+    # S/O Stack Overflow for Regex. Link: https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
+    # text = re.sub(r'\W+', '', text).lower()
+
+    # left = 0
+    # right = len(text) - 1
+
+    # while left < right:
+    #     if text[left] is not text[right]:
+    #         return False
+
+    #     left += 1
+    #     right -= 1
+
+    # return True
 
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
@@ -75,12 +79,12 @@ def is_palindrome_recursive(text, left=None, right=None):
 
     if left <= right:
         if lowercase_text[left] not in LETTERS:
-            # left += 1
-            return is_palindrome_recursive(text, left + 1, right)
+            left_index = left + 1
+            return is_palindrome_recursive(text, left_index, right)
 
         if lowercase_text[right] not in LETTERS:
-            # right -= 1
-            return is_palindrome_recursive(text, left, right - 1)
+            right_index = right - 1
+            return is_palindrome_recursive(text, left, right_index)
 
         if lowercase_text[left] is not lowercase_text[right]:
             return False
@@ -89,9 +93,6 @@ def is_palindrome_recursive(text, left=None, right=None):
 
     return True
 
-
-
-    pass
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
