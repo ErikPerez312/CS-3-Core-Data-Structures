@@ -1,44 +1,91 @@
 #!python
 
+#####IMPLEMENT find index. Others should use it.
+
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
-    if pattern == "":
-        return True
-    if pattern == text:
-        print("early exit true")
+    if pattern == "" or pattern == text:
         return True
 
     pattern_index = 0
-    text_index = 0
+    # text_index = 0
 
-    while text_index < len(text):
-        if pattern_index < len(pattern):
-            
-            current_text_letter = text[text_index]
-            current_pattern_letter = pattern[pattern_index]
 
-            if current_text_letter == current_pattern_letter:
-                pattern_index += 1
+    # We use text_index to iterate through each letter in text
+    for text_index in range(len(text)):
+        # early exit if pattern is found
+        # if pattern_index == len(pattern):
+        #     print("true")
+        #     break
+
+        char = text_index
+
+        for index in range(len(pattern)):
+            print("pattern rang", index)
+
+            if pattern_index == len(pattern):
+                print("true in break")
+                # break
+                return True
+
+            if char < len(text):
+                if pattern[index] == text[char]:
+                    pattern_index += 1
+                    char += 1
+                    continue
+                else:
+                    pattern_index = 0
+                    break
+
             else:
-                pattern_index = 0
-
-                if text_index == 0:
-                    text_index += 1
-                
-                if text[text_index] == pattern[0]:
-                    text_index -= 1
-
-            text_index += 1
-        else:
-            break
+                # break
+                print("false")
+                return False
 
     if pattern_index == len(pattern):
+        print("true")
         return True
     else:
-        return False 
+        print("fasle")
+        return False
+
+
+#### for for 
+    # pattern_len = len(pattern)
+    # for text_character in text:
+    #     for pattern_character in pattern:
+    #####
+
+    # while text_index < len(text):
+    #     if pattern_index < len(pattern):
+
+    #         current_text_letter = text[text_index]
+    #         current_pattern_letter = pattern[pattern_index]
+
+    #         # If letters match add one to pattern index to check following letter
+    #         if current_text_letter == current_pattern_letter:
+    #             pattern_index += 1
+    #             text_index += 1
+    #         else:
+    #             # if letter doesn't match set pattern_index back to zero.
+    #             pattern_index = 0
+
+    #             if text[text_index] == pattern[0]:
+    #                 continue
+
+    #             text_index += 1
+
+    #     else:
+    #         # Pattern is found.
+    #         break
+
+    # if pattern_index == len(pattern):
+    #     return True
+    # else:
+    #     return False 
    
 
 

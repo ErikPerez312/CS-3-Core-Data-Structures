@@ -17,7 +17,6 @@
 - Implement palindrome checking functions using [palindromes starter code]:
     - Implement `is_palindrome_iterative` - iterative version of `is_palindrome`
     - Implement `is_palindrome_recursive` - recursive version of `is_palindrome`
-<<<<<<< HEAD
     - Run `python palindromes.py string1 string2 ... stringN` to test `is_palindrome`
         - Example: `python palindromes.py ABC noon RaceCar 'Taco, Cat'` gives the result:
         > `FAIL: 'ABC' is not a palindrome`<br/>
