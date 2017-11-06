@@ -16,6 +16,7 @@
 |   3   |    Friday, October 27  | [String Algorithms](Class3.md)             |
 |   4   |    Monday, October 30  | Array & Linked List                        |
 |   4   |    Monday, October 30  | [Arrays & Linked Lists](Class4.md)         |
+<<<<<<< HEAD
 |   5   | Wednesday, November 1  | List, Stack & Queue           			  |
 |   6   |    Friday, November 3  | *TBD*                         			  |
 |   7   |    Monday, November 6  | Map & Hash Table              			  |
@@ -30,6 +31,22 @@
 |  16   |    Monday, December 4  | Priority Queue & Heap         			  |
 |  17   | Wednesday, December 6  | Sorting Algorithms Recap      			  |
 |  18   |    Friday, December 8  | *TBD*                         			  |
+=======
+|   5   | Wednesday, November 1  | [Lists, Stacks & Queues](Class5.md)        |
+|   6   |    Friday, November 3  | [Call Routing Project](Class6.md)          |
+|   7   |    Monday, November 6  | Map & Hash Table              |
+|   8   | Wednesday, November 8  | Set & Circular Buffer         |
+|   9   |    Friday, November 10 | Trees                         |
+|  10   |    Monday, November 13 | Tree Traversals               |
+|  11   | Wednesday, November 15 | Iterative Sorting Algorithms  |
+|  12   |    Friday, November 17 | Integer Sorting Algorithms    |
+|  13   |    Monday, November 27 | Divide-and-Conquer Recursion  |
+|  14   | Wednesday, November 29 | Recursive Algorithm Analysis  |
+|  15   |    Friday, December 1  | *TBD*                         |
+|  16   |    Monday, December 4  | Priority Queue & Heap         |
+|  17   | Wednesday, December 6  | Sorting Algorithms Recap      |
+|  18   |    Friday, December 8  | *TBD*                         |
+>>>>>>> a65620d1e232531e015dd4e97b48a54f0287c79c
 
 
 ## Repository Setup Instructions
