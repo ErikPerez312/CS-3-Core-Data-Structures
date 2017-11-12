@@ -18,9 +18,7 @@ class list_set_test(unittest.TestCase):
 		assert set_one.size == 1
 
 		with self.assertRaises(KeyError):
-			set_one.add("A")
-		with self.assertRaises(ValueError):
-			set_one.add(" ")  
+			set_one.add("A") 
 		with self.assertRaises(ValueError):
 			set_one.add("")  
 		with self.assertRaises(ValueError):
@@ -35,8 +33,6 @@ class list_set_test(unittest.TestCase):
 
 		with self.assertRaises(KeyError):
 			set_one.remove("T")
-		with self.assertRaises(ValueError):
-			set_one.remove(" ")  
 		with self.assertRaises(ValueError):
 			set_one.remove("")  
 		with self.assertRaises(ValueError):
@@ -112,7 +108,7 @@ class list_set_test(unittest.TestCase):
 		set_five = List_Set(["T", "M", "L"])
 		set_six = List_Set(["M", "L", "T"])
 		is_subset_three = set_five.is_subset(set_six)
-		assert is_subset_three == False
+		assert is_subset_three == True
 
 if __name__ == '__main__':
     unittest.main()

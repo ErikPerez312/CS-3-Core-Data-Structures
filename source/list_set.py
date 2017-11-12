@@ -1,5 +1,4 @@
 
-from hashtable import HashTable
 
 class List_Set(object):
 
@@ -14,11 +13,10 @@ class List_Set(object):
 
 	def add(self, element):
 		"""add `element` to this set, if not present already"""
-		if element == "" or element is None or element == " ":
+		if element == "" or element is None:
 			raise ValueError("Element can not be None or whitespace")
 
 		if self.contains(element):
-			# return "raise ValueError('Element already exists')" 
 			raise KeyError("Element already exists")
 
 		self.size += 1
@@ -26,21 +24,19 @@ class List_Set(object):
 
 	def remove(self, element):
 		"""remove `element` from this set, if present, or else raise `KeyError`"""
-		if element == "" or element is None or element == " ":
+		if element == "" or element is None:
 			raise ValueError("Element can not be None or whitespace")
 
 		if self.contains(element):
 			self.items.remove(element)
 			self.size -= 1
 		else:
-			# return "raise KeyError('Element doesn't exitst in set')"
 			raise KeyError("Element doesn't exist in set")	
 
 	def contains(self, element):
 		"""return a boolean indicating whether `element` is in this set"""
-		if element == "" or element is None or element == " ":
+		if element == "" or element is None:
 			return False
-			# raise ValueError("Set can not contain None or whitespace")
 
 		for item in self.items:
 			if item == element:
@@ -50,38 +46,35 @@ class List_Set(object):
 
 	def union(self, other_set):
 		"""return a new set that is the union of this set and `other_set`"""
-		combined_elements = []
+		combined_elements = List_Set(self.items)
+		# combined_elements = list(self.items)
 
 		for element in other_set.items:
-			if self.contains(element) == False:
-				combined_elements.append(element)
+			if combined_elements.contains(element) == False:
+				combined_elements.add(element)
 
-		return List_Set(self.items + combined_elements)
+		return combined_elements
 
 	def intersection(self, other_set):
 		"""return a new set that is the intersection of this set and `other_set`"""
-		matching_elements = []
+		matching_elements = List_Set()
 
 		for element in other_set.items:
 			if self.contains(element):
-				matching_elements.append(element)
+				matching_elements.add(element)
 			
 
-		return List_Set(matching_elements)
+		return matching_elements
 
 	def difference(self, other_set):
 		"""return a new set that is the difference of this set and `other_set`"""
-		difference_elements = []
+		difference_elements = List_Set()
 
 		for element in self.items:
 			if other_set.contains(element) == False:
-				difference_elements.append(element)
+				difference_elements.add(element)
 
-		# for element in other_set.items:
-		# 	if self.contains(element) == False:
-		# 		difference_elements.append(element)
-
-		return List_Set(difference_elements)
+		return difference_elements
 
 	def is_subset(self, other_set):
 		"""return a boolean indicating whether `other_set` is a subset of this set"""
@@ -94,7 +87,7 @@ class List_Set(object):
 			else: 
 				return False
 		## Might not need anymore
-		if matched_elements_count == self.size and matched_elements_count < other_set.size:
+		if matched_elements_count == self.size and matched_elements_count <= other_set.size:
 			return True
 		else:
 			return False
