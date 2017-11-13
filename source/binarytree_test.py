@@ -1,6 +1,6 @@
 #!python
 
-from binarysearchtree import BinarySearchTree, BinaryTreeNode
+from binarytree import BinarySearchTree, BinaryTreeNode
 import unittest
 
 
@@ -47,6 +47,29 @@ class BinaryTreeNodeTest(unittest.TestCase):
         node.right = None
         assert node.is_branch() is False
 
+    def test_height(self):
+        left_node = BinaryTreeNode(3)
+        root_node = BinaryTreeNode(5)
+        right_node = BinaryTreeNode(8)
+
+        root_node.left = left_node
+        root_node.right = right_node
+
+        left_node_of_left = BinaryTreeNode(2)
+        right_node_of_Left = BinaryTreeNode(4)
+
+        left_node.left = left_node_of_left
+        left_node.right = right_node_of_Left
+
+        left_node_of_left_node_of_left = BinaryTreeNode(1)
+        left_node_of_left.left = left_node_of_left_node_of_left
+
+        right_node_right = BinaryTreeNode(9)
+        right_node.right = right_node_right
+
+        assert root_node.height() == 4
+
+
 
 class BinarySearchTreeTest(unittest.TestCase):
 
@@ -80,6 +103,8 @@ class BinarySearchTreeTest(unittest.TestCase):
         assert tree.size == 3
         assert tree.is_empty() is False
 
+        assert tree.height() == 2 # Recursive height test
+
     def test_size(self):
         tree = BinarySearchTree()
         assert tree.size == 0
@@ -98,6 +123,8 @@ class BinarySearchTreeTest(unittest.TestCase):
         assert tree.search(2) == 2
         assert tree.search(3) == 3
         assert tree.search(4) is None
+
+        assert tree.height() == 2 # Recursive height test
 
     def test_search_with_7_items(self):
         # Create a complete binary search tree of 7 items in level-order
