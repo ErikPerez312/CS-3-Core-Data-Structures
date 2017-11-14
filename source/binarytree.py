@@ -1,6 +1,7 @@
 #!python
 
 def calculate_height_recursively(node):
+    # Thanks to reem on https://stackoverflow.com/questions/21011423/how-to-calculate-the-height-of-a-bst-in-python
     if node is None:
         return 0
     else:
@@ -36,33 +37,6 @@ class BinaryTreeNode(object):
         downward path from this node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
         return calculate_height_recursively(self)
-        # if self.is_leaf():
-        #     return 0
-
-        # done_searching = False
-        # left_count = 0 
-        # right_count = 0 
-        # current_node = self
-
-        # while done_searching == False:
-
-        #     if current_node.data == None:
-        #         done_searching = True
-        #         return max(left_count, right_count)
-
-        #     # TODO: Check if left child has a value and if so calculate its height
-        #     if current_node.left != None:
-        #         current_node = current_node.left
-        #         left_count += 1
-        #         continue
-        #     # TODO: Check if right child has a value and if so calculate its height
-        #     if current_node.right != None:
-        #         current_node = current_node.right
-        #         right_count += 1
-        #         continue
-        #     # Return one more than the greater of the left height and right height
-        # return max(left_count, right_count)
-
 
 class BinarySearchTree(object):
 
@@ -145,7 +119,7 @@ class BinarySearchTree(object):
         # Loop until we descend past the closest leaf node
         while node is not None:
             # TODO: Check if the given item matches the node's data
-            if node.data == item:
+            if item == node.data
                 # Return the found node
                 return node
             # TODO: Check if the given item is less than the node's data
@@ -172,7 +146,7 @@ class BinarySearchTree(object):
         # Loop until we descend past the closest leaf node
         while node is not None:
             # TODO: Check if the given item matches the node's data
-            if node.data == item:
+            if item == node.data
                 # Return the parent of the found node
                 return parent
             # TODO: Check if the given item is less than the node's data
