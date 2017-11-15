@@ -119,7 +119,7 @@ class BinarySearchTreeTest(unittest.TestCase):
         # Create a complete binary search tree of 3 items in level-order
         items = [2, 1, 3]
         tree = BinarySearchTree(items)
-        assert tree.search(1) == 1
+        assert tree.search(1).data == 1
         assert tree.search(2) == 2
         assert tree.search(3) == 3
         assert tree.search(4) is None
