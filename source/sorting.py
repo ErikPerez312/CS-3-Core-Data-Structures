@@ -3,14 +3,63 @@
 
 def is_sorted(items):
     """Return a boolean indicating whether given items are in sorted order."""
-    # TODO: Check that all adjacent items are in order, return early if not
+
+    current_index = 0
+    next_index = 1 # Set to '1' to initially have access to the second element
+
+    # Check that all adjacent items are in order until the end of list, return early if not
+    while next_index < len(items):
+        current_item = items[current_index]
+        next_item = items[next_index]
+
+        if current_item != next_item and current_item > next_item:
+            return False
+
+        current_index += 1
+        next_index += 1
+
+    # 'items' contains a single element, is empty
+    # or all comparisons completed w/o early return. 'items' is sorted. 
+    return True
+
+
 
 
 def bubble_sort(items):
     """Sort given items by swapping adjacent items that are out of order, and
     repeating until all items are in sorted order."""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Swap adjacent items that are out of order
+
+    # Early return if 'items' is already sorted
+    if is_sorted(items):
+        return 
+
+    current_index = 0
+    next_index = 1 
+    # Tracks index of the last sorted item
+    end_index = len(items) 
+
+    is_done_sorting = False
+
+    while is_done_sorting is False:
+        current_item = items[current_index]
+        next_item = items[next_index]
+
+        # Swap items if not in order. Do nothing if equal
+        if current_item != next_item and current_item > next_item:
+            items[current_index], items[next_index] = items[next_index], items[current_index]
+
+        current_index += 1
+        next_index += 1
+
+        # Reached index of last sorted item. Repeat process from beginning of list
+        if next_index == end_index:
+            current_index = 0
+            next_index = 1
+            end_index -= 1
+
+        # Last sorted item is the second item in list. Unnecessary to continue. Finished.
+        if end_index == 1:
+            is_done_sorting = True
 
 
 def selection_sort(items):
