@@ -40,6 +40,7 @@ def bubble_sort(items):
 
     is_done_sorting = False
 
+    ## TODO: Update with 'is_sorted' method ##
     while is_done_sorting is False:
         current_item = items[current_index]
         next_item = items[next_index]
@@ -65,17 +66,56 @@ def bubble_sort(items):
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order."""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Find minimum item in unsorted items
-    # TODO: Swap it with first unsorted item
+
+    # Tracks index of where sorted item should be inserted
+    first_unsorted_index = 0
+    # Tracks the minimum item's index
+    minimum_index = first_unsorted_index
+
+    while is_sorted(items) is False:
+        minimum_item = items[first_unsorted_index]
+
+        # Find the smallest value in list
+        for index in range(first_unsorted_index, len(items)):
+            if items[index] < minimum_item:
+                minimum_item = items[index]
+                minimum_index = index
+
+        # Swap first unsorted item with the minimum item
+        items[first_unsorted_index], items[minimum_index] = items[minimum_index], items[first_unsorted_index]
+        first_unsorted_index += 1
 
 
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order."""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
+
+    ## TODO: Refactor with while loop ## 
+    if is_sorted(items):
+        return
+
+    # Tracks the last item in sorted 'list'
+    sorted_end_index = 0
+
+    for unsorted_index in range(1, len(items)):
+        # Iterates through sorted 'list' from end to start
+        for sorted_index in range(sorted_end_index, -1, -1):
+            unsorted_item = items[unsorted_index]
+            current_sorted_item = items[sorted_index]
+
+            # Swap items if not in order
+            if current_sorted_item > unsorted_item:
+                items[sorted_index], items[unsorted_index] = items[unsorted_index], items[sorted_index]
+
+                # Keep track of new index after swap
+                unsorted_index -= 1
+                continue
+            else:
+                # Current items are in order
+                break
+
+        # New item was sorted, update index
+        sorted_end_index += 1
 
 
 def test_sorting(sort=bubble_sort, num_items=20, max_value=50):
@@ -134,3 +174,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+    # items = [4,2,12,3,9]
+    # print("Start", items)
+    # insertion_sort(items)
+
+    # print("sorted", items)
