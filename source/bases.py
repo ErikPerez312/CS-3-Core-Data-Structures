@@ -1,6 +1,6 @@
 #!python
 
-from math import floor
+from math import floor, pow
 import string
 import unittest
 import pdb
@@ -13,27 +13,49 @@ import pdb
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
-VALUES = string.digits + string.ascii_lowercase
-JOIN_NUMBERS_AS_STRING = lambda number_array: ''.join(str(number) for number in number_array)
+def GET_POSSIBLE_VALUES_FOR(method):
+	"""Returns helper dictionary for encode or decode methods.
+	encode- Key: 1-36 Integer, Value: 1-9a-z String 
+	decode- Key: 1-9a-z String, Value: 1-36 Integer
+	"""
+	ascii_values = string.digits + string.ascii_lowercase
+	decode_values = {}
+	encode_values = {}
 
-def decode(digits, base):  # try 4 Lines
+	for index, value in enumerate(ascii_values):
+		decode_values[value] = index
+		encode_values[index] = value
+
+	if method == "decode":
+		return decode_values
+	elif method == "encode":
+		return encode_values
+
+	raise KeyError("Method must be 'encode' or 'decode'")
+
+
+DECODE_VALUES = GET_POSSIBLE_VALUES_FOR("decode")
+ENCODE_VALUES = GET_POSSIBLE_VALUES_FOR("encode")
+
+
+def decode(digits, base):
     """Decode given digits in given base to number in base 10.
     digits: str -- string representation of number (in given base)
     base: int -- base of given number
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    if base == 2:
-        pass
 
+    number_of_digits = len(digits)
+    base_ten_value = 0
 
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+    for digit in digits:
+        number = DECODE_VALUES[digit]
+        number_of_digits -= 1
 
+        base_ten_value += number * int(pow(base, number_of_digits))
+
+    return base_ten_value
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
@@ -45,21 +67,19 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
 
-    quotient = number
     remainders_list = []
+    encoded_string = str()
 
-    remainders_list.append(floor(quotient % base))
+    while number != 0:
+    	remainder = number % base 
+    	number = number // base 
 
-    while floor(quotient / base) > 0:
-        quotient /= base
-        remainders_list.append(floor(quotient % base))
-        
-    for index, number in enumerate(remainders_list):
-        remainders_list[index] = VALUES[int(number)]
+    	remainders_list.append(remainder)
 
-    remainders_list.reverse()
-    return JOIN_NUMBERS_AS_STRING(remainders_list)
-    # ...
+    for item in reversed(remainders_list):
+    	encoded_string += ENCODE_VALUES[item]
+
+    return encoded_string
 
 
 def convert(digits, base1, base2):
@@ -71,16 +91,10 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
 
-
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
+    # Convert to decimal(base 10) first
+    base_ten_conversion = decode(digits, base1)
+    return encode(base_ten_conversion, base2)
 
 
 def main():
@@ -100,9 +114,19 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+	# print(convert("124", 8, 10))
 
-    print(decode("1010", 2))
+	# for key, value in DECODE_VALUES.iteritems():
+	# 	print("key", key, "value: ", value)
+
+	# print("=========")
+	for key, value in ENCODE_VALUES.iteritems():
+		print("key", key, "value: ", value)
+
+    # main()
+
+	print(decode("7e", 16))
+	print(encode(45, 16))
 
 
 
