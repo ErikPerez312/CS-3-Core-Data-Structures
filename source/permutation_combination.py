@@ -43,24 +43,38 @@ for item in perm2:
 	print(item)
 
 
-def combination(items):
+def combination(k, available, used=[]):
+	if k == len(used):
+		yield tuple(used)
+	elif len(available) == 0:
+		pass 
+	else:
+		head = available.pop(0)
+		used.append(head)
 
-	if len(items) == 0:
-		return []
+		print("Avaliabel", available[:])
+		for c in combination(k, available[:], used[:]):
+			print("Avalable for loop")
+			yield c
 
-	pass
+		used.pop()
 
+		print("Avaliabel---2", available[:])
+		for c in combination(k, available[:], used[:]):
+			print("Avaliabel in for loop---2", available[:])
+			yield c 
 
-
-
-test = [2,3,4]
-print("list test", test, "type", type(test))
-new = list(test)
-print("list test 2", new, "type", type(new))
-
-
-
-comb1 = []
-
+print("comb ---")
+comb1 = [c for c in combination(2, ['a','b','c'])]
 for item in comb1:
 	print(item)
+
+
+print("slice test")
+item = [1,2,3,4,5,6]
+
+print("[:3]", item[:3])
+print("[3:]", item[3:])
+print("[:]", item[:])
+print("[::", item[::])
+

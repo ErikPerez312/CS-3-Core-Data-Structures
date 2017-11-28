@@ -5,9 +5,6 @@ def linear_search(array, item):
     # implement linear_search_iterative and linear_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
 
-    # return linear_search_iterative(array, item)
-    return linear_search_recursive(array, item)
-
     return linear_search_iterative(array, item)
     # return linear_search_recursive(array, item)
 
@@ -39,12 +36,12 @@ def binary_search(array, item):
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
 
-    # return binary_search_iterative(array, item)
-    return binary_search_recursive(array, item)
+    return binary_search_iterative(array, item)
+    # return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
-    # TODO: implement binary search iteratively here
+    # implement binary search iteratively here
 
     item_found = False
     left = 0
@@ -76,7 +73,7 @@ def binary_search_iterative(array, item):
 
 
 def binary_search_recursive(array, item, left=None, right=None):
-    # TODO: implement binary search recursively here
+    # implement binary search recursively here
 
     if left == None and right == None:
         left = 0

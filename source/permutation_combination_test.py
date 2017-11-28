@@ -16,10 +16,10 @@ class Permutation_Combination_Test(unittest.TestCase):
 		assert len(items3) == 5040
 
 	def test_combination(self):
-		items = combination([1,2,3])
-		items2 = combination(["A", "B", "C"])
-		items3 = permutation([1,2,3,4,5,6,7])
-		
+		items = [c for c in combination(2,[1,2,3], [])]
+		items2 = [c for c in combination(2,["A", "B", "C"], [])]
+		# items3 = permutation([1,2,3,4,5,6,7])
+
 		assert len(items) == 3
 		assert len(items2) == 3
-		assert len(items3) == 2520
+		# assert len(items3) == 2520
